@@ -149,7 +149,7 @@ a far more meaningful intercept than the price at all-features-zero.
 | Cost vs iteration (log y)                        | <img src="images/cost_vs_iteration.png" width="450">    |
 | Pre-Norm One Feature Linear Regression           | <img src="images/prenorm_lin_reg.png" width="450">      |
 | Normalized One Feature Linear Regression         | <img src="images/norm_lin_reg.png" width="450">         |
-| Pre-Norm High Alpha Multiple Linear Regression   | <img src="images/prenorm_mult_lin_reg.png" width="450"> |
+| Pre-Norm Lower Alpha Multiple Linear Regression  | <img src="images/prenorm_mult_lin_reg.png" width="450"> |
 | Normalized Best Alpha Multiple Linear Regression | <img src="images/norm_mult_lin_reg.png" width="450">    |
 | 3-D Gradient Descent on Cost Surface             | <img src="images/grad_on_cost.png" width="450">         |
 
