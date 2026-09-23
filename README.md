@@ -143,15 +143,15 @@ a far more meaningful intercept than the price at all-features-zero.
 
 ## Part 4 — Visualization
 
-| Plot                                             | Graph                                                     |
-| ------------------------------------------------ | --------------------------------------------------------- |
-| Data Visualization - each X vs price             | ![Data Visualization](images/orig_data_vis.png)           |
-| Cost vs iteration (log y)                        | ![Cost vs Iteration](images/cost_vs_iteration.png)        |
-| Pre-Norm One Feature Linear Regression           | ![Pre-Norm Lin Reg](images/prenorm_lin_reg.png)           |
-| Normalized One Feature Linear Regression         | ![Norm Lin Reg](images/norm_lin_reg.png)                  |
-| Pre-Norm High Alpha Multiple Linear Regression   | ![Pre-Norm Mult Lin Reg](images/prenorm_mult_lin_reg.png) |
-| Normalized Best Alpha Multiple Linear Regression | ![Norm Mult Lin Reg](images/norm_mult_lin_reg.png)        |
-| 3-D Gradient Descent on Cost Surface             | ![Grad Des on Cost Surface](images/grad_on_cost.png)      |
+| Plot                                             | Graph                                                   |
+| ------------------------------------------------ | ------------------------------------------------------- |
+| Data Visualization - each X vs price             | <img src="images/orig_data_vis.png" width="450">        |
+| Cost vs iteration (log y)                        | <img src="images/cost_vs_iteration.png" width="450">    |
+| Pre-Norm One Feature Linear Regression           | <img src="images/prenorm_lin_reg.png" width="450">      |
+| Normalized One Feature Linear Regression         | <img src="images/norm_lin_reg.png" width="450">         |
+| Pre-Norm High Alpha Multiple Linear Regression   | <img src="images/prenorm_mult_lin_reg.png" width="450"> |
+| Normalized Best Alpha Multiple Linear Regression | <img src="images/norm_mult_lin_reg.png" width="450">    |
+| 3-D Gradient Descent on Cost Surface             | <img src="images/grad_on_cost.png" width="450">         |
 
 ---
 
