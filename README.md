@@ -143,15 +143,15 @@ a far more meaningful intercept than the price at all-features-zero.
 
 ## Part 4 — Visualization
 
-| Plot                                             | Graph                                                 |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| Data Visualization - each X vs price             | ![Data Visualization](images/orig_data_vis)           |
-| Cost vs iteration (log y)                        | ![Cost vs Iteration](images/cost_vs_iteration)        |
-| Pre-Norm One Feature Linear Regression           | ![Pre-Norm Lin Reg](images/prenorm_lin_reg)           |
-| Normalized One Feature Linear Regression         | ![Norm Lin Reg](images/norm_lin_reg)                  |
-| Pre-Norm High Alpha Multiple Linear Regression   | ![Pre-Norm Mult Lin Reg](images/prenorm_mult_lin_reg) |
-| Normalized Best Alpha Multiple Linear Regression | ![Norm Mult Lin Reg](images/norm_mult_lin_reg)        |
-| 3-D Gradient Descent on Cost Surface             | ![Grad Des on Cost Surface](images/grad_on_cost)      |
+| Plot                                             | Graph                                                     |
+| ------------------------------------------------ | --------------------------------------------------------- |
+| Data Visualization - each X vs price             | ![Data Visualization](images/orig_data_vis.png)           |
+| Cost vs iteration (log y)                        | ![Cost vs Iteration](images/cost_vs_iteration.png)        |
+| Pre-Norm One Feature Linear Regression           | ![Pre-Norm Lin Reg](images/prenorm_lin_reg.png)           |
+| Normalized One Feature Linear Regression         | ![Norm Lin Reg](images/norm_lin_reg.png)                  |
+| Pre-Norm High Alpha Multiple Linear Regression   | ![Pre-Norm Mult Lin Reg](images/prenorm_mult_lin_reg.png) |
+| Normalized Best Alpha Multiple Linear Regression | ![Norm Mult Lin Reg](images/norm_mult_lin_reg.png)        |
+| 3-D Gradient Descent on Cost Surface             | ![Grad Des on Cost Surface](images/grad_on_cost.png)      |
 
 ---
 
