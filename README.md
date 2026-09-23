@@ -1,6 +1,6 @@
 # Linear Regression from Scratch
 
-An implementation of univariate and multiple linear regression using only NumPy, with
+An implementation of univariate and multivariate linear regression using only NumPy, with
 batch gradient descent, z-score feature normalization, and evaluation against a held-out
 test set. No scikit-learn is used for the model itself.
 
@@ -10,9 +10,9 @@ The goal is to predict the resale price of a used laptop from its specifications
 
 ## The Data
 
-Synthetic data generated from a known linear formula plus Gaussian noise, which makes it
-possible to verify that the model recovers the true underlying relationship rather than
-just fitting well.
+The dataset is synthetic, generated from a known linear formula with a small amount of
+random variation added to each price. Because the underlying formula is known, the learned
+weights can be checked against the true values **the model is verified, not just evaluated.**
 
 | File                            | Rows | Contents                 |
 | ------------------------------- | ---- | ------------------------ |
@@ -30,13 +30,12 @@ just fitting well.
 | `screen_in`      | 13.0 – 17.3     | continuous                                             |
 | `cpu_score`      | ~2,500 – 30,000 | benchmark score; correlated with age                   |
 | `battery_health` | 55 – 100        | percent; degrades with age                             |
-| `listing_views`  | 5 – 899         | **irrelevant** — pure noise, no effect on price        |
+| `listing_views`  | 5 – 899         | **irrelevant** — has no effect on price                |
 
 **Target:** `price` in US dollars, roughly $650 – $3,100, mean ≈ $1,716.
 
 Note the scale spread: `screen_in` sits around 15 while `cpu_score` reaches 30,000. Four
-orders of magnitude between features is what makes normalization necessary rather than
-merely convenient.
+orders of magnitude between features is what makes normalization/feature scaling necessary.
 
 ### Ground truth
 
@@ -51,11 +50,13 @@ price = 150
       +   0.06 * cpu_score
       +   3    * battery_health
       +   0    * listing_views
-      + noise ~ N(0, 40)
+      + random variation of about $40 per laptop
 ```
 
-Because the noise has σ = 40, its variance is 1,600. **That is the floor on test MSE** —
-no model can do better on this data.
+That random variation is the limit on how well any model can do here. It averages around
+$40 per laptop and carries no information that the features could explain, so a perfect
+model would still be off by roughly that much. In squared terms it puts a floor of about
+**1,600** on the achievable Mean Squared Error (MSE).
 
 ---
 
@@ -69,11 +70,9 @@ Three functions, all written with explicit loops first for clarity:
 - `compute_gradient(x, y, w, b)` — returns `dj_dw`, `dj_db`
 - `gradient_descent(...)` — batch updates, returns final parameters plus `J_history`
 
-Every example contributes to every update, which is what makes this _batch_ gradient
-descent as opposed to stochastic or mini-batch.
-
-**Result:** `cpu_score` alone explains only part of the variance. The fitted line has the
-right slope but the residual cloud is wide, which motivates adding the remaining features.
+**Result:** `cpu_score` alone explains only part of the variation in price. The fitted line
+has the right slope but the surrounding cloud of points is wide, which motivates adding the
+remaining features.
 
 ---
 
@@ -107,9 +106,8 @@ sigma = np.std(X_train, axis=0)
 X_norm = (X_train - mu) / sigma
 ```
 
-`axis=0` collapses rows, yielding per-feature statistics. The same `mu` and `sigma` are
-reused for every prediction, including the test set — recomputing them on new data is a
-leak and produces subtly wrong inputs.
+The same `mu` and `sigma` are reused for every prediction, including the test set,
+recomputing them on new data is unnecessary.
 
 ### Why it is required here
 
@@ -154,17 +152,9 @@ a far more meaningful intercept than the price at all-features-zero.
 | Learning rate overlay (`1e-4` → `1.5`)         | too slow, converging, and divergent, on one axis                                     |
 | Fitted line over the data                      | in both raw and normalized x units — same model, two axes                            |
 | Predicted vs actual with a diagonal            | a perfect model puts every point on the line                                         |
+| Errors vs predicted price                      | a flat, even band means no structure is left unexplained                             |
 | 2-D cost contours with the descent path        | circular basin when normalized, narrow ravine when not                               |
 | 3-D cost surface with the path                 | the same conditioning story as a bowl vs a trough                                    |
-
-Two plotting details that cost real debugging time:
-
-- **Log scale** on cost curves. On a linear axis a diverged run compresses everything else
-  to the floor.
-- **`np.argsort` before `plt.plot`** on any line drawn over scattered data. `plot` connects
-  points in array order, so unsorted x values produce a zigzag rather than a line.
-- Diverged runs contain `inf` and `nan`, which matplotlib cannot place. Mask with
-  `np.isfinite` and mark the overflow point with `axvline`.
 
 ---
 
@@ -181,6 +171,10 @@ pred_test = ((X_test - mu) / sigma) @ w_norm + b_norm
 ```
 Test MSE: 1,594   mean absolute error: $30   within $100: 98%
 ```
+
+Against a floor of about 1,600, the model has recovered essentially all of the learnable
+signal — the remaining error is the random variation built into the data, which no model
+could predict.
 
 MSE is reported in squared dollars and is not directly comparable to a price; the square
 root, ≈ $40, is the interpretable version.
@@ -232,3 +226,4 @@ matplotlib
 - Z-score normalization with train-only statistics
 - Learning rate selection and divergence diagnosis
 - Weight de-normalization for interpretation
+- Held-out test evaluation against a known error floor
