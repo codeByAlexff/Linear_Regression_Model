@@ -1,8 +1,9 @@
 # Linear Regression from Scratch
 
-An implementation of univariate and multivariate linear regression using only NumPy, with
-batch gradient descent, z-score feature normalization, and evaluation against a held-out
-test set. No scikit-learn is used for the model itself.
+An implementation of univariate and multiple linear regression using only NumPy, with
+batch gradient descent, z-score feature normalization, model evaluation.
+
+**No scikit-learn is used for the model itself.**
 
 The goal is to predict the resale price of a used laptop from its specifications.
 
@@ -10,7 +11,7 @@ The goal is to predict the resale price of a used laptop from its specifications
 
 ## The Data
 
-The dataset is synthetic, generated from a known linear formula with a small amount of
+The dataset is generated from a known linear formula with a small amount of
 random variation added to each price. Because the underlying formula is known, the learned
 weights can be checked against the true values **the model is verified, not just evaluated.**
 
@@ -142,19 +143,15 @@ a far more meaningful intercept than the price at all-features-zero.
 
 ## Part 4 — Visualization
 
-| Plot                                           | Shows                                                                                |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Feature grid — each `X[:, j]` vs `price`       | which relationships are linear; `listing_views` is visibly a flat cloud              |
-| Box plot of raw vs normalized features (log y) | the four-order-of-magnitude scale gap, and its removal                               |
-| Cost vs iteration (log y)                      | convergence; a rising curve means `alpha` is too large or a gradient sign is flipped |
-| Last 100 iterations of cost                    | whether the run actually settled or was still descending                             |
-| Cost vs `w` with `b` fixed                     | a parabola — the learned `w` should sit exactly at the minimum                       |
-| Learning rate overlay (`1e-4` → `1.5`)         | too slow, converging, and divergent, on one axis                                     |
-| Fitted line over the data                      | in both raw and normalized x units — same model, two axes                            |
-| Predicted vs actual with a diagonal            | a perfect model puts every point on the line                                         |
-| Errors vs predicted price                      | a flat, even band means no structure is left unexplained                             |
-| 2-D cost contours with the descent path        | circular basin when normalized, narrow ravine when not                               |
-| 3-D cost surface with the path                 | the same conditioning story as a bowl vs a trough                                    |
+| Plot                                             | Graph                                                 |
+| ------------------------------------------------ | ----------------------------------------------------- |
+| Data Visualization - each X vs price             | ![Data Visualization](images/orig_data_vis)           |
+| Cost vs iteration (log y)                        | ![Cost vs Iteration](images/cost_vs_iteration)        |
+| Pre-Norm One Feature Linear Regression           | ![Pre-Norm Lin Reg](images/prenorm_lin_reg)           |
+| Normalized One Feature Linear Regression         | ![Norm Lin Reg](images/norm_lin_reg)                  |
+| Pre-Norm High Alpha Multiple Linear Regression   | ![Pre-Norm Mult Lin Reg](images/prenorm_mult_lin_reg) |
+| Normalized Best Alpha Multiple Linear Regression | ![Norm Mult Lin Reg](images/norm_mult_lin_reg)        |
+| 3-D Gradient Descent on Cost Surface             | ![Grad Des on Cost Surface](images/grad_on_cost)      |
 
 ---
 
